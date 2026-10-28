@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#faf8f3">
+<title>DwellReel — Make every listing a story</title>
+<style>
+:root{--paper:#faf8f3;--card:#fff;--ink:#232535;--muted:#767988;--line:#eae7e2;--orange:#f56f45;--orange-pale:#fff0e7;--purple:#5652d6;--purple-pale:#efefff;--night:#242640;--shadow:0 12px 42px rgba(37,36,40,.055)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.55 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}a{color:inherit;text-decoration:none}[hidden]{display:none!important}button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid #9e98fd;outline-offset:3px}label{display:block;font-weight:750;font-size:12px;margin-bottom:7px;letter-spacing:.05px}input:not([type=range]),select,textarea{display:block;width:100%;border:1px solid #e5e3e5;border-radius:12px;color:var(--ink);background:#fff;padding:11px 13px;min-height:44px;transition:border-color .16s,box-shadow .16s}input:not([type=range]):focus,select:focus,textarea:focus{border-color:#aea9e9;box-shadow:0 0 0 3px #eae9ff;outline:0}input::placeholder,textarea::placeholder{color:#a4a3aa}textarea{min-height:80px;resize:vertical}small,.hint{font-size:11px;color:var(--muted)}
+.page{max-width:1390px;padding:0 clamp(16px,4vw,54px) 58px;margin:auto}.mast{display:flex;align-items:center;justify-content:space-between;padding:23px 0 20px;gap:16px}.brand{display:flex;align-items:center;gap:11px}.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:13px;background:var(--orange);color:#fff;font-size:25px;line-height:1;font-weight:900;transform:rotate(-7deg)}.brand-text{font-size:21px;letter-spacing:-1.2px;font-weight:850}.brand-text span{color:var(--orange)}.mast-right{display:flex;align-items:center;gap:19px;font-size:12px;color:#6d6e7c}.mast-right a:hover{text-decoration:underline}.local-pill{background:#fff;border:1px solid #e5e3e2;border-radius:40px;padding:9px 13px;color:#545b67;font-weight:700;font-size:11px}.local-pill:before{content:"";display:inline-block;width:7px;height:7px;background:#5cbc95;border-radius:50%;margin-right:8px}
+.hero{position:relative;border-radius:25px;overflow:hidden;display:flex;min-height:235px;background:#272742;color:#fff;box-shadow:0 25px 56px rgba(34,35,53,.10)}.hero:before{content:"";position:absolute;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,#5c5173 0,transparent 70%);right:150px;top:-220px;opacity:.48}.hero-copy{position:relative;z-index:1;flex:1;padding:36px clamp(26px,4vw,57px);max-width:740px}.kicker{font-size:10px;letter-spacing:2.4px;text-transform:uppercase;font-weight:850;color:#ffab8f;margin-bottom:12px}.hero h1{font-size:clamp(30px,3.5vw,48px);line-height:1.13;letter-spacing:-2px;margin:0 0 14px;font-weight:850}.hero h1 em{color:#ffb394;font-style:normal}.hero p{font-size:13px;line-height:1.75;color:#c6c4d6;max-width:470px;margin:0}.hero-art{width:335px;position:relative;flex-shrink:0;overflow:hidden;align-self:stretch}.hero-photo{position:absolute;width:210px;height:148px;border:5px solid #f9f4ed;background:#ede2d6;border-radius:16px;overflow:hidden;box-shadow:0 18px 42px #11122270}.hero-photo img{width:100%;height:100%;object-fit:cover}.hero-photo.back{top:32px;right:15px;transform:rotate(12deg)}.hero-photo.front{top:64px;right:117px;transform:rotate(-11deg)}.hero-sticker{position:absolute;top:155px;right:29px;background:#fcb385;color:#2b2434;border-radius:50px;padding:9px 13px;font-size:11px;font-weight:850;transform:rotate(7deg)}
+.steps{display:flex;gap:12px;margin:25px 0 27px;flex-wrap:wrap}.step-link{display:flex;align-items:center;gap:9px;border:1px solid #e7e3dd;background:#fff;border-radius:13px;padding:10px 15px;font-size:12px;color:#696a76;font-weight:720;box-shadow:0 3px 10px #24252e06}.step-link span{background:#f4f2ef;color:#5e6170;border-radius:9px;display:grid;place-items:center;width:26px;height:26px;font-size:11px}.step-link:first-child span{background:var(--orange-pale);color:#d45f3d}.step-link:hover{border-color:#c9c6ed;transform:translateY(-1px)}.steps-note{font-size:11px;color:#85828b;margin:auto 0 auto auto}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(305px,390px);align-items:start;gap:25px}.editor{display:flex;flex-direction:column;gap:20px;min-width:0}.panel{border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);border-radius:19px;padding:clamp(19px,2.5vw,28px);scroll-margin-top:25px}.panel-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:21px}.panel-title{display:flex;gap:13px;align-items:flex-start}.panel-index{min-width:38px;height:38px;display:grid;place-items:center;background:var(--purple-pale);color:var(--purple);border-radius:12px;font-weight:850;font-size:12px}.panel-index.warm{background:var(--orange-pale);color:#df6947}.panel h2{font-size:20px;letter-spacing:-.65px;line-height:1.2;margin:0 0 6px;font-weight:830}.panel-heading p{font-size:12px;line-height:1.55;margin:0;color:#93919b}.field{margin-bottom:15px}.field:last-child{margin-bottom:0}.fields2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.countchip{background:var(--orange-pale);color:#d1674c;border-radius:30px;padding:7px 12px;font-weight:800;font-size:11px;white-space:nowrap}.tip{background:#f6f4ff;border-left:3px solid #8f88e6;border-radius:0 10px 10px 0;color:#77728f;font-size:11px;padding:10px 13px;line-height:1.5;margin:16px 0 0}
+.dropzone{border:1.5px dashed #d5d0dc;background:#faf9ff;border-radius:15px;padding:24px 18px;display:flex;align-items:center;gap:17px;min-height:110px;cursor:pointer}.dropzone:hover,.dropzone.dragging{background:#f2efff;border-color:#8d83ec}.upload-icon{width:48px;height:48px;border-radius:15px;background:var(--purple-pale);color:var(--purple);display:grid;place-items:center;font-size:26px;font-weight:650;flex-shrink:0}.drop-copy{min-width:0;flex:1}.drop-copy strong{font-size:13px;display:block}.drop-copy small{display:block;margin-top:5px;line-height:1.5}.upload-actions{display:flex;gap:9px;align-items:center;margin-top:11px;flex-wrap:wrap}.mini-btn{border:0;background:var(--purple);color:white;font-weight:800;font-size:11px;padding:9px 14px;border-radius:9px}.mini-btn:hover{background:#413cb0}.text-btn{border:0;color:var(--purple);background:transparent;font-weight:800;font-size:11px;padding:8px}.photo-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:17px}.photo-card{border:1px solid #ebe8ed;background:#fff;border-radius:13px;overflow:hidden;min-width:0}.photo-card.dragover{outline:2px solid #675ee8}.photo-picture{height:128px;background:#f0eef2;position:relative;overflow:hidden}.photo-picture img{width:100%;height:100%;object-fit:cover}.photo-num{position:absolute;top:9px;left:9px;background:#2b2b3bda;color:#fff;border-radius:7px;padding:4px 7px;font-weight:800;font-size:10px}.photo-remove{position:absolute;right:8px;top:8px;border:0;width:25px;height:25px;border-radius:7px;background:#fff;color:#3c3b46;font-size:18px;line-height:1}.photo-body{padding:10px}.photofile{color:#8a8791;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:8px}.rowcontrols{display:flex;gap:6px}.rowcontrols select{font-size:11px;min-height:32px;padding:6px;border-radius:8px;min-width:0;flex:1}.arrowbtn{border:1px solid #e7e4ea;background:#fff;color:#555170;border-radius:7px;padding:3px 7px}.photo-body input{min-height:33px!important;margin-top:8px;padding:7px!important;border-radius:8px!important;font-size:11px!important}.note{background:#fff7ef;border:1px solid #ffe6d4;color:#98715c;font-size:11px;line-height:1.55;padding:10px 12px;border-radius:10px;margin-top:15px}
+.style-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.style-block h3{font-size:12px;font-weight:850;margin:0 0 12px}.format-grid{display:flex;gap:8px;flex-wrap:wrap}.format{flex:1;min-width:65px;border:1.5px solid #e5e2e8;background:#fff;border-radius:11px;padding:11px 5px;display:flex;align-items:center;flex-direction:column;gap:7px}.format.selected{border-color:var(--purple);background:#f5f4ff}.format .ratio{border:2px solid #9c96ed;border-radius:3px;background:#e7e5ff}.format[data-value=landscape] .ratio{width:31px;height:20px}.format[data-value=portrait] .ratio{width:18px;height:30px}.format[data-value=square] .ratio{width:26px;height:26px}.format strong{font-size:10px}.format small{font-size:9px}.format .tick{display:none}.format.selected strong{color:var(--purple)}.sound-row{margin-top:15px}.volume-line{display:flex;align-items:center;gap:12px}.volume-line input{flex:1;accent-color:var(--purple);width:100%}.volume-line output{color:var(--purple);font-size:12px;font-weight:850;min-width:34px}.sound-control{margin-top:9px}.sound-control audio{width:100%;height:34px}.setting-help{display:block;margin-top:6px}.scene-toggle{cursor:pointer;display:flex;align-items:center;justify-content:space-between;list-style:none;font-size:13px;font-weight:800}.scene-toggle::-webkit-details-marker{display:none}.scene-toggle:after{content:'+';font-size:22px;color:var(--purple)}details[open] .scene-toggle:after{content:'−'}.scene-desc{font-size:12px;color:#9995a0;margin:6px 0 17px}.scene-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:17px 0 20px}.scene{border:1px solid #eeebf1;background:#fbfaff;padding:12px;border-radius:11px;display:flex;gap:10px;min-width:0}.scene-index{width:28px;height:28px;background:#ebe7fd;flex-shrink:0;display:grid;place-items:center;color:#5d52bd;font-size:11px;font-weight:800;border-radius:8px}.scene-content{min-width:0}.scene-type{font-size:9px;color:#8c82ad;text-transform:uppercase;letter-spacing:.5px;font-weight:800}.scene-content strong{display:block;font-size:11px;line-height:1.4;margin:3px 0}.scene-content p{font-size:10px;color:#9a96a0;margin:0}.script-box{background:#faf9fc;padding:15px;border-radius:11px;font-size:11px;color:#737080;white-space:pre-wrap;line-height:1.65;max-height:140px;overflow:auto}.muted-inline{font-size:10px;color:#95919b;margin-top:10px}
+.preview{position:sticky;top:20px;border-radius:21px;background:var(--night);padding:22px;color:white;box-shadow:0 22px 54px rgba(37,36,63,.16)}.preview-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:19px}.preview-head h2{font-size:18px;letter-spacing:-.5px;margin:0}.preview-pill{border:1px solid #54536c;background:#3b3b56;padding:6px 9px;border-radius:25px;color:#d4d2e5;font-size:10px;font-weight:800}.preview-viewport{background:#111322;border-radius:14px;padding:9px;border:1px solid #44445f;display:flex;justify-content:center;align-items:center;min-height:225px}.video-stage{width:100%;max-height:440px;aspect-ratio:16/9;position:relative;border-radius:10px;background:#121522;overflow:hidden;display:flex;align-items:center;justify-content:center}.video-stage[data-format=portrait]{aspect-ratio:9/16;max-width:235px}.video-stage[data-format=square]{aspect-ratio:1;max-width:310px}.video-stage video{width:100%;height:100%;object-fit:contain;background:#111321}.videotag{position:absolute;top:10px;left:10px;background:#212238ba;color:#f2edf5;padding:6px 9px;font-size:9px;letter-spacing:.5px;font-weight:800;border-radius:7px;pointer-events:none}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}.stat{padding:12px 7px;border:1px solid #45455c;background:#30314c;border-radius:10px;text-align:center}.stat small{display:block;color:#aaa9c2;font-size:10px}.stat strong{display:block;font-size:18px;margin-top:3px}.barwrap{margin:20px 0}.barhead{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:11px;color:#cfcedb}.barhead strong{font-weight:850;color:#ffad8c}.bar{height:6px;border-radius:6px;background:#4a4a62;overflow:hidden;margin-top:9px}.bar span{display:block;width:0;background:#ff9974;height:100%;border-radius:6px;transition:width .2s}.barwrap p{font-size:11px;line-height:1.6;color:#a6a5bf;margin:9px 0 0}.generate{display:flex;align-items:center;justify-content:center;width:100%;gap:12px;background:var(--orange);color:#1f2230;border:0;border-radius:12px;font-weight:900;padding:15px 12px;font-size:14px;box-shadow:0 7px 17px #f56f4533}.generate:hover{background:#ff946e}.download{margin-top:11px;display:block;background:#f9f8ff;border:1px solid #f9f8ff;color:#302c65;text-align:center;font-weight:850;padding:12px;border-radius:11px}.error,.success-line{margin-top:13px;padding:11px 12px;font-size:12px;line-height:1.5;border-radius:10px;display:none}.error{background:#512e3b;color:#ffc8ce}.success-line{background:#244b44;color:#c8ffdf}.preview-note{font-size:10px;line-height:1.6;color:#9390ad;margin-top:17px}.loading-dot{width:15px;height:15px;border:2px solid #302c6a;border-right-color:transparent;border-radius:50%;display:inline-block;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.footerline{text-align:center;color:#98939a;font-size:11px;padding-top:32px;line-height:1.7}
+@media(max-width:1000px){.hero-art{width:255px}.hero-photo.back{right:1px}.hero-photo.front{right:80px}.layout{grid-template-columns:minmax(0,1fr) minmax(270px,325px);gap:16px}.photo-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.style-grid{grid-template-columns:1fr}}
+@media(max-width:740px){.mast-right a{display:none}.hero{min-height:190px}.hero-art{display:none}.hero-copy{padding:29px 25px}.steps-note{display:none}.layout{grid-template-columns:1fr}.preview{position:static;order:-1}.editor{order:2}.preview-viewport{min-height:190px}.preview .stats{margin:14px 0}.page{padding-bottom:35px}.panel{padding:19px}.style-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.mast{padding:16px 0}.local-pill{display:none}.hero h1{font-size:32px}.hero p{font-size:12px}.steps{gap:8px}.step-link{padding:8px 10px;font-size:11px}.step-link span{width:22px;height:22px}.fields2,.style-grid{grid-template-columns:1fr}.photo-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.photo-picture{height:95px}.photo-body{padding:7px}.rowcontrols{flex-wrap:wrap}.rowcontrols select{flex-basis:100%}.scene-list{grid-template-columns:1fr}.dropzone{align-items:flex-start}.drop-copy strong{font-size:12px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="mast">
+    <a class="brand" href="#top" aria-label="DwellReel home"><span class="logo" aria-hidden="true">▶</span><span class="brand-text">dwell<span>reel.</span></span></a>
+    <div class="mast-right"><a href="#photos">Add photos</a><a href="#settings">Video style</a><span class="local-pill">Local video studio</span></div>
+  </header>
+  <section class="hero" id="top">
+    <div class="hero-copy"><div class="kicker">A simpler way to sell a space</div><h1>Every home has<br><em>a story to tell.</em></h1><p>Turn your property photos into a beautiful, ready-to-share video. No timeline, no editing experience, no complicated setup.</p></div>
+    
+  </section>
+  <nav class="steps" aria-label="Creation steps"><a class="step-link" href="#details"><span>01</span>Listing details</a><a class="step-link" href="#photos"><span>02</span>Add photos</a><a class="step-link" href="#settings"><span>03</span>Make it yours</a><span class="steps-note">Three steps. One great video.</span></nav>
+  <form id="form" class="layout">
+    <div class="editor">
+      <section class="panel" id="details"><div class="panel-heading"><div class="panel-title"><span class="panel-index warm">01</span><div><h2>Tell us about the property</h2><p>Just the key details. We'll turn them into a video story.</p></div></div></div>
+        <div class="field"><label for="name">Property name *</label><input id="name" name="name" maxlength="100" required value="The Horizon Residence" placeholder="e.g. The Horizon Residence"></div>
+        <div class="fields2"><div class="field"><label for="location">Location</label><input id="location" name="location" value="Mohali, Punjab" placeholder="City or neighbourhood"></div><div class="field"><label for="price">Asking price</label><input id="price" name="price" value="₹85 lakh" placeholder="e.g. ₹85 lakh"></div></div>
+        <div class="field"><label for="property_type">Property type</label><input id="property_type" name="property_type" value="2-BHK apartment" placeholder="e.g. 2-BHK apartment"></div>
+        <div class="field"><label for="features">Highlights <small>(separate with commas)</small></label><textarea id="features" name="features" placeholder="Bright living room, Modular kitchen, Spacious bedrooms, Private balcony">Bright living room, Modular kitchen, Spacious bedrooms, Private balcony</textarea></div>
+        <div class="field"><label for="cta">Call to action</label><input id="cta" name="cta" value="Book a site visit today!" placeholder="e.g. Book a site visit"></div>
+      </section>
+      <section class="panel" id="photos"><div class="panel-heading"><div class="panel-title"><span class="panel-index">02</span><div><h2>Choose your best shots</h2><p>Add 4–8 photos. Arrange them in the order you want viewers to see.</p></div></div><span class="countchip" id="photo-count">0 / 8</span></div>
+        <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Choose property photos"><span class="upload-icon" aria-hidden="true">↥</span><div class="drop-copy"><strong>Drop your photos here, or browse files</strong><small>JPG, PNG or WEBP • up to 10 MB per photo</small><div class="upload-actions"><button type="button" class="mini-btn" id="browse">Choose photos</button><button type="button" class="text-btn" id="sample">Try 6 sample photos</button></div></div></div>
+        <input type="file" id="images" accept="image/jpeg,image/png,image/webp" multiple hidden>
+        <div id="gallery" class="photo-gallery" aria-live="polite"></div>
+        <div id="room-note" class="note" hidden>Make sure the room label matches each photo. If needed, write your own scene caption. Room labels are suggested from filenames, not AI recognition.</div>
+      </section>
+      <section class="panel" id="settings"><div class="panel-heading"><div class="panel-title"><span class="panel-index warm">03</span><div><h2>Give it your style</h2><p>Three small choices. Your photos stay steady and clear.</p></div></div></div>
+        <div class="style-grid">
+          <div class="style-block"><h3>Video size</h3><div class="format-grid"><button class="format selected" type="button" data-value="landscape" aria-pressed="true"><span class="tick">✓</span><span class="ratio"></span><strong>16:9</strong><small>Wide</small></button><button class="format" type="button" data-value="portrait" aria-pressed="false"><span class="tick">✓</span><span class="ratio"></span><strong>9:16</strong><small>Reels</small></button><button class="format" type="button" data-value="square" aria-pressed="false"><span class="tick">✓</span><span class="ratio"></span><strong>1:1</strong><small>Square</small></button></div><input type="hidden" id="video_format" name="video_format" value="landscape"></div>
+          <div class="style-block"><div class="field"><label for="transition">Transitions</label><select id="transition" name="transition"><option value="smooth">Smooth crossfade (recommended)</option><option value="gentle">Gentle dissolve</option><option value="quick">Quick fade</option><option value="clean">Clean cuts (no animation)</option></select></div></div>
+          <div class="style-block"><div class="field"><label for="music">Background music</label><select id="music" name="music"><option value="random">Surprise me — random track</option><option value="warm_keys">Warm Keys</option><option value="soft_ambient">Soft Ambient</option><option value="bright_morning">Bright Morning</option><option value="golden_hour">Golden Hour</option><option value="modern_lounge">Modern Lounge</option><option value="none">No music</option></select></div><div class="sound-control"><audio id="track-preview" controls preload="none" hidden></audio><small id="music-help">Choose a specific track to listen first.</small></div></div>
+          <div class="style-block"><label for="music_volume">Music volume</label><div class="volume-line"><input type="range" name="music_volume" id="music_volume" min="0" max="1" step="0.05" value="0.30"><output id="volume-label">30%</output></div><small class="setting-help">30% works nicely for most listings.</small></div>
+        </div>
+      </section>
+      <section class="panel" id="scenes"><details><summary class="scene-toggle">See the script &amp; scene order <span class="countchip" id="scene-count">2 scenes</span></summary><p class="scene-desc">Optional: review the story before exporting. You can change room labels and captions in step 02.</p><div id="scene-list" class="scene-list"></div><label for="script-text">Suggested promotional script (text only)</label><div id="script-text" class="script-box" tabindex="0"></div><div class="muted-inline">This version uses fact-based templates; it does not synthesize spoken narration or use a trained AI model.</div></details></section>
+    </div>
+    <aside class="preview" aria-label="Video preview and export"><div class="preview-head"><h2>Your video, right here ✦</h2><span class="preview-pill" id="status-pill">Sample preview</span></div>
+      <div class="preview-viewport"><div class="video-stage" id="video-stage" data-format="landscape"><video id="video-player" controls playsinline preload="metadata" poster="/demo-images/02_living_room.jpg" src="/demo-video/sample_property_video.mp4"></video><span class="videotag" id="video-tag">SAMPLE · NOT YOUR PHOTOS</span></div></div>
+      <div class="stats"><div class="stat"><small>Length</small><strong id="duration">0:08</strong></div><div class="stat"><small>Scenes</small><strong id="stat-scenes">02</strong></div><div class="stat"><small>Size</small><strong id="stat-format">16:9</strong></div></div>
+      <div class="barwrap"><div class="barhead"><span id="ready-label">Start your video story</span><strong id="ready-value">0%</strong></div><div class="bar"><span id="progressbar"></span></div><p id="ready-help">Upload photos and check their room labels to get started.</p></div>
+      <button type="submit" id="submit" class="generate">✦ <span>Generate my video</span> <span aria-hidden="true">→</span></button>
+      <a id="download-link" class="download" hidden download="property-video.mp4">↓ Download your MP4</a>
+      <div id="error" class="error" role="alert"></div><div id="success" class="success-line" role="status"></div>
+      <div class="preview-note">We keep only the latest video for up to 24 hours. Download it to save your copy. The preview starts with a synthetic demo video.</div>
+    </aside>
+  </form>
+  <footer class="footerline">DwellReel • Simple, template-powered property videos • No AI model required • Sample photos are synthetic</footer>
+</div>
+<script src="/config.js"></script>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const BACKEND = (window.DWELLREEL_API_BASE || '').trim().replace(/\/+$/, '');
+const apiUrl = (path) => BACKEND + path;
+
+const form=$('form'), input=$('images'), gallery=$('gallery'), dropzone=$('dropzone');
+const rooms=['Exterior','Living Room','Bedroom','Kitchen','Dining Room','Balcony','Bathroom','Parking','Garden','Other'];
+const hints={Exterior:/\b(exterior|building|facade|front)\b/i,'Living Room':/\b(living|lounge|sitting)\b/i,Bedroom:/\b(bedroom|bedrooms|bed)\b/i,Kitchen:/\b(kitchen|pantry)\b/i,'Dining Room':/\b(dining)\b/i,Balcony:/\b(balcony|terrace|patio)\b/i,Bathroom:/\b(bathroom|washroom|bath)\b/i,Parking:/\b(parking|garage)\b/i,Garden:/\b(garden|lawn)\b/i};
+const examples=[['01_exterior.jpg','Exterior'],['02_living_room.jpg','Living Room'],['03_bedroom.jpg','Bedroom'],['04_kitchen.jpg','Kitchen'],['05_dining_room.jpg','Dining Room'],['06_balcony.jpg','Balcony']];
+let photos=[],format='landscape',rendered=null,dragIndex=null;
+const escRoom=filename=>{const base=filename.replace(/[_.\-0-9]+/g,' ');return Object.entries(hints).find(([,p])=>p.test(base))?.[0]||'Other';};
+const markError=s=>{const node=$('error');node.textContent=s;node.style.display=s?'block':'none';};
+function flagDirty(){if(!rendered)return;rendered=null;$('status-pill').textContent='Previous export';$('video-tag').textContent='PREVIOUS VIDEO · GENERATE AGAIN';$('download-link').hidden=true;}
+function addFiles(files, presetRoom){
+  const existing=photos.length, extra=[...files];
+  if(existing+extra.length>8){markError('Maximum 8 photos are supported. Remove some photos first.');return;}
+  for(const file of extra){
+    if(!file.type.startsWith('image/')){markError('Please upload JPG, PNG or WEBP image files only.');return;}
+    if(file.size>10*1024*1024){markError(file.name+' exceeds the 10 MB photo limit.');return;}
+  }
+  markError('');flagDirty();
+  for(let i=0;i<extra.length;i++){const file=extra[i];photos.push({file,room:presetRoom?.[i]||escRoom(file.name),caption:'',url:URL.createObjectURL(file)});}
+  drawGallery();drawScenes();updateSummary();
+}
+function drawGallery(){
+  gallery.replaceChildren();$('photo-count').textContent=photos.length+' / 8';$('room-note').hidden=!photos.length;
+  photos.forEach((item,i)=>{
+    const card=document.createElement('div');card.className='photo-card';card.draggable=true;card.title='Drag to reorder photos';
+    card.addEventListener('dragstart',e=>{if(e.target.closest('input, select, button')){e.preventDefault();return;}dragIndex=i;e.dataTransfer.effectAllowed='move';});
+    card.addEventListener('dragover',e=>{e.preventDefault();card.classList.add('dragover');});
+    card.addEventListener('dragleave',()=>card.classList.remove('dragover'));
+    card.addEventListener('drop',e=>{e.preventDefault();card.classList.remove('dragover');if(dragIndex===null||dragIndex===i)return;const [moved]=photos.splice(dragIndex,1);photos.splice(i,0,moved);dragIndex=null;flagDirty();drawGallery();drawScenes();});
+    card.addEventListener('dragend',()=>{dragIndex=null;gallery.querySelectorAll('.dragover').forEach(c=>c.classList.remove('dragover'));});
+    const picture=document.createElement('div');picture.className='photo-picture';
+    const img=document.createElement('img');img.src=item.url;img.alt='Property photo '+(i+1);
+    const num=document.createElement('span');num.className='photo-num';num.textContent=String(i+1).padStart(2,'0');
+    const remove=document.createElement('button');remove.type='button';remove.className='photo-remove';remove.title='Remove photo';remove.setAttribute('aria-label','Remove '+item.file.name);remove.textContent='×';
+    remove.addEventListener('click',()=>{flagDirty();URL.revokeObjectURL(item.url);photos.splice(i,1);drawGallery();drawScenes();updateSummary();});
+    picture.append(img,num,remove);
+    const body=document.createElement('div');body.className='photo-body';
+    const label=document.createElement('div');label.className='photofile';label.textContent=item.file.name;
+    const controls=document.createElement('div');controls.className='rowcontrols';
+    const room=document.createElement('select');room.setAttribute('aria-label','Room type for photo '+(i+1));
+    for(const name of rooms){const opt=document.createElement('option');opt.value=name;opt.textContent=name;room.add(opt);}
+    room.value=item.room;room.addEventListener('change',()=>{item.room=room.value;flagDirty();drawScenes();});
+    const move=(symbol,direction)=>{const btn=document.createElement('button');btn.type='button';btn.className='arrowbtn';btn.textContent=symbol;btn.title=direction<0?'Move earlier':'Move later';btn.disabled=i+direction<0||i+direction>=photos.length;
+      btn.addEventListener('click',()=>{const j=i+direction;[photos[i],photos[j]]=[photos[j],photos[i]];flagDirty();drawGallery();drawScenes();});return btn;};
+    controls.append(room,move('↑',-1),move('↓',1));
+    const caption=document.createElement('input');caption.placeholder='Optional scene caption';caption.value=item.caption;caption.maxLength=140;caption.setAttribute('aria-label','Caption for photo '+(i+1));caption.addEventListener('input',()=>{item.caption=caption.value;flagDirty();drawScenes();});
+    body.append(label,controls,caption);card.append(picture,body);gallery.append(card);
+  });
+}
+function facts(){return {name:$('name').value.trim(),location:$('location').value.trim(),price:$('price').value.trim(),property_type:$('property_type').value.trim(),features:$('features').value.split(/[,\n]/).map(s=>s.trim()).filter(Boolean).slice(0,12),cta:$('cta').value.trim()};}
+function roomFeature(room,features){return features.find(s=>hints[room]&&hints[room].test(s))||null;}
+function plan(){
+  const f=facts(), overview=[f.location,f.property_type].filter(Boolean).join(' • ');
+  const output=[{type:'Introduction',title:f.name||'Your property',detail:overview}];
+  photos.forEach((p,i)=>output.push({type:p.room==='Other'?'Property photo':p.room,title:p.caption||roomFeature(p.room,f.features)||(p.room==='Other'?'Property Photo '+(i+1):p.room),detail:f.name}));
+  if(f.price)output.push({type:'Pricing',title:'Price: '+f.price,detail:overview});
+  output.push({type:'Call to action',title:'Interested in this property?',detail:f.cta});
+  return output;
+}
+function suggestedScript(){const f=facts(),items=['Introducing '+(f.name||'this property')+'.'];if(f.location)items.push('Located in '+f.location+'.');if(f.property_type)items.push('Property type: '+f.property_type+'.');if(f.features.length)items.push('Highlights: '+f.features.join(', ')+'.');if(f.price)items.push('Price: '+f.price+'.');if(f.cta)items.push(f.cta);return items.join(' ');}
+function drawScenes(override){
+  const scenes=override||plan();$('scene-list').replaceChildren();$('scene-count').textContent=scenes.length+' scenes';
+  scenes.forEach((scene,i)=>{const wrapper=document.createElement('div');wrapper.className='scene';
+    const number=document.createElement('div');number.className='scene-index';number.textContent=String(i+1).padStart(2,'0');
+    const content=document.createElement('div');content.className='scene-content';
+    const type=document.createElement('div');type.className='scene-type';type.textContent=scene.type||scene.badge||'Scene';
+    const title=document.createElement('strong');title.textContent=scene.title;const detail=document.createElement('p');detail.textContent=scene.detail||scene.subtitle||'';
+    content.append(type,title,detail);wrapper.append(number,content);$('scene-list').append(wrapper);});
+  if(!rendered)$('script-text').textContent=suggestedScript();
+  updateSummary();
+}
+function updateSummary(){
+  const n=plan().length;$('stat-scenes').textContent=String(n).padStart(2,'0');
+  const overlap={smooth:.75,gentle:1,quick:.35,clean:0}[$('transition').value]??.75;
+  const secs=n*3.75-Math.max(n-1,0)*overlap;$('duration').textContent=Math.floor(secs/60)+':'+String(Math.round(secs%60)).padStart(2,'0');
+  const percent=(photos.length?50:0)+(facts().name?20:0)+(photos.length>=4?30:0);
+  $('ready-value').textContent=percent+'%';$('progressbar').style.width=percent+'%';
+  $('ready-label').textContent=photos.length>=4?'Your property story is ready to render':photos.length?'Add a few more photos for a full story':'Your property video is ready to plan';
+  $('ready-help').textContent=photos.length?'Check every room label before generating. '+photos.length+' photo(s) selected.':'Upload your own photos or load synthetic samples to try the editor.';
+}
+function updateFormat(value){flagDirty();format=value;$('video_format').value=value;$('video-stage').dataset.format=value;
+  $('stat-format').textContent={landscape:'16:9',portrait:'9:16',square:'1:1'}[value];
+  document.querySelectorAll('.format').forEach(b=>{const on=b.dataset.value===value;b.classList.toggle('selected',on);b.setAttribute('aria-pressed',on?'true':'false');});}
+function chooseMusic(){const value=$('music').value,audio=$('track-preview');audio.pause();if(['random','none'].includes(value)){audio.hidden=true;audio.removeAttribute('src');audio.load();$('music-help').hidden=false;return;}audio.src='/music/'+value+'.mp3';audio.hidden=false;$('music-help').hidden=true;}
+$('browse').addEventListener('click',()=>input.click());dropzone.addEventListener('click',e=>{if(e.target.closest('button'))return;input.click();});
+dropzone.addEventListener('keydown',e=>{if(e.target===dropzone&&(e.key==='Enter'||e.key===' ')){e.preventDefault();input.click();}});
+input.addEventListener('change',()=>{addFiles(input.files);input.value='';});
+for(const event of ['dragenter','dragover'])dropzone.addEventListener(event,e=>{e.preventDefault();dropzone.classList.add('dragging');});
+for(const event of ['dragleave','drop'])dropzone.addEventListener(event,e=>{e.preventDefault();dropzone.classList.remove('dragging');});
+dropzone.addEventListener('drop',e=>addFiles(e.dataTransfer.files));
+$('sample').addEventListener('click',async()=>{const btn=$('sample');btn.disabled=true;markError('');try{
+  const files=await Promise.all(examples.map(async ([filename])=>{const r=await fetch('/demo-images/'+filename);if(!r.ok)throw Error('Demo image could not load.');return new File([await r.blob()],filename,{type:'image/jpeg'});}));
+  photos.forEach(p=>URL.revokeObjectURL(p.url));photos=[];addFiles(files,examples.map(e=>e[1]));
+}catch(e){markError(e.message)}finally{btn.disabled=false;}});
+for(const b of document.querySelectorAll('.format'))b.addEventListener('click',()=>updateFormat(b.dataset.value));
+$('music').addEventListener('change',()=>{flagDirty();chooseMusic();});$('music_volume').addEventListener('input',()=>{flagDirty();$('volume-label').textContent=Math.round(+$('music_volume').value*100)+'%';});
+for(const name of ['name','location','price','property_type','features','cta'])$(name).addEventListener('input',()=>{if(rendered){$('status-pill').textContent='Previous export';$('video-tag').textContent='PREVIOUS RENDER · REGENERATE';$('download-link').hidden=true;}rendered=null;drawScenes();});
+$('transition').addEventListener('change',()=>{flagDirty();updateSummary();});
+form.addEventListener('submit',async e=>{
+ e.preventDefault();markError('');$('success').style.display='none';
+ if(photos.length<1){markError('Please add at least one property photo. For the assignment, 4–8 photos are recommended.');$('photos').scrollIntoView({behavior:'smooth'});return;}
+ if(photos.length>8){markError('Maximum 8 photos allowed.');return;}
+ const btn=$('submit'),previous=btn.innerHTML;btn.disabled=true;btn.replaceChildren();
+ const spinner=document.createElement('span');spinner.className='loading-dot';const label=document.createElement('span');label.textContent='Rendering your video…';btn.append(spinner,label);
+ $('status-pill').textContent='Rendering';$('ready-label').textContent='Encoding your scenes and soundtrack';
+ try{
+   const payload=new FormData(form);payload.delete('images');
+   photos.forEach(p=>payload.append('images',p.file,p.file.name));
+   payload.set('scene_labels',JSON.stringify(photos.map(p=>p.room)));
+   payload.set('scene_captions',JSON.stringify(photos.map(p=>p.caption)));
+   const response=await fetch(apiUrl('/generate'),{method:'POST',body:payload});
+   let result;try{result=await response.json()}catch{throw Error('Unexpected response from the server. Check the terminal for details.');}
+   if(!response.ok)throw Error(typeof result.detail==='string'?result.detail:'Video generation failed.');
+   rendered=result;
+   const video=$('video-player');video.removeAttribute('poster');video.pause();video.src=apiUrl(result.video_url);video.load();
+   $('video-tag').textContent='YOUR GENERATED VIDEO';$('status-pill').textContent='Video ready';
+   $('download-link').hidden=false;$('download-link').href=apiUrl(result.video_url);
+   $('stat-format').textContent={landscape:'16:9',portrait:'9:16',square:'1:1'}[result.video_format]||'16:9';
+   $('stat-scenes').textContent=String(result.scenes).padStart(2,'0');
+   $('script-text').textContent=result.script;
+   const actual=(result.scene_plan||[]).map(s=>({type:s.badge,title:s.title,detail:s.subtitle}));drawScenes(actual);
+   const notice=$('success');notice.textContent='✓ Video generated with '+result.music.name+' soundtrack. Download your MP4 to keep it.';notice.style.display='block';
+   $('ready-label').textContent='Video export complete';$('ready-value').textContent='100%';$('progressbar').style.width='100%';$('ready-help').textContent='Preview the video above or download it now.';
+   video.scrollIntoView({behavior:'smooth',block:'nearest'});
+ }catch(error){markError(error.message);$('status-pill').textContent='Demo video';$('ready-label').textContent='Could not render the video';}
+ finally{btn.disabled=false;btn.innerHTML=previous;}
+});
+chooseMusic();drawGallery();drawScenes();updateFormat('landscape');
+})();
+</script>
+</body>
+</html>
